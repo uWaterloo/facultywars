@@ -4,14 +4,14 @@ angular.module('PortalApp')
         $http, $q,
         facultywarsFactory) {
 
-    	$scope.callSeed = function() {
+        $scope.callSeed = function() {
             $scope.portalHelpers.invokeServerFunction('seed');
         };
-    
-    	$scope.isCollapsed1 = false;
-    	$scope.isCollapsed2 = true;
-    	$scope.isCollapsed3 = true;
-    	$scope.isCollapsed4 = true;
+
+        $scope.isCollapsed1 = false;
+        $scope.isCollapsed2 = true;
+        $scope.isCollapsed3 = true;
+        $scope.isCollapsed4 = true;
 
         $scope.chosenRiddle = {};
 
@@ -30,7 +30,7 @@ angular.module('PortalApp')
                 "question": userRiddleQuestion,
                 "answer": userRiddleAnswer
             }).then(function(result) {
-				$scope.reply2 = "Thank you for your submission!";
+                $scope.reply2 = "Thank you for your submission!";
             });
         };
 
@@ -50,16 +50,14 @@ angular.module('PortalApp')
         $rootScope, $filter, $q) {
         var init = function($scope) {
             // Place your init code here:
-            $scope.portalHelpers.invokeServerFunction('seed').then(function(result) {
-                $scope.portalHelpers.invokeServerFunction('getRiddles').then(
-                    function(result) {
-                        var riddles = result;
-                        var riddle = riddles[parseInt(Math.random() *
-                            riddles.length)];
+            $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(
+                result) {
+                var riddles = result;
+                var riddle = riddles[parseInt(Math.random() *
+                    riddles.length)];
 
-                        $scope.chosenRiddle.question = riddle.question;
-                        $scope.chosenRiddle.id = riddle.id;
-                    });
+                $scope.chosenRiddle.question = riddle.question;
+                $scope.chosenRiddle.id = riddle.id;
             });
         }
 
