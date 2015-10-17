@@ -2,6 +2,8 @@ angular.module('PortalApp')
 
 .controller('facultywarsCtrl', ['$scope', '$http', '$q', 'facultywarsFactory', function ($scope, $http, $q,
 facultywarsFactory) {
+    
+    $scope.riddle="What has roots but does not grow?";
 
     // Widget Configuration
     $scope.portalHelpers.config = {
@@ -12,6 +14,7 @@ facultywarsFactory) {
     // initialize the service
     facultywarsFactory.init($scope);
 
+    $scope.portalHelpers.showView("main.html", 1);
 }])
     // Factory maintains the state of the widget
     .factory('facultywarsFactory', ['$http', '$rootScope', '$filter', '$q', function ($http, $rootScope,
