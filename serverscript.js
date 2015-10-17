@@ -1,57 +1,31 @@
+var riddles = [{
+    question: "What has roots but does not grow?",
+    answer: "Mountain"
+}, {
+    question: "A box with no lock etcetera",
+    answer: "Egg"
+}, {
+    question: "What voiceless howls blahblahblah",
+    answer: "Wind"
+}];
+
 function rollback() {
     db.Execute('DROP TABLE Result');
     db.Execute('DROP TABLE Riddle');
-    db.Execute('DROP TABLE Scores');
+    db.Execute('DROP TABLE Score');
 }
 
 function seed() {
+    rollback();
     var riddles = db.Execute(
         'CREATE TABLE Riddle' +
-        '(RiddleId INT  NOT NULL IDENTITY(1,1) PRIMARY KEY, ' +
-        ' Question TEXT NOT NULL, ' +
-        ' Answer   TEXT NOT NULL)'
+        '(id INT  NOT NULL IDENTITY(1,1) PRIMARY KEY, ' +
+        ' question TEXT NOT NULL, ' +
+        ' answer   TEXT NOT NULL)'
     );
 
-    var score = db.Execute(
-        'CREATE TABLE Score' +
-        '(ScoreId  INT NOT NULL IDENTITY(1,1) PRIMARY KEY, ' +
-        ' UserId   INT NOT NULL, ' +
-        ' RiddleId INT NOT NULL, ' +
-        ' Fail     INT NOT NULL DEFAULT(0), ' +
-        ' Success  INT NOT NULL DEFAULT(0))'
-    );
-}
-
-var riddles = {
-    1: {
-        id: 1,
-        question: "What has roots but does not grow?",
-        answer: function(a) {
-            return a === "Mountain";
-        }
-    },
-    2: {
-        id: 2,
-        question: "A box with no lock etcetera",
-        answer: function(a) {
-            return a === "Egg";
-        }
-    },
-    3: {
-        id: 3,
-        question: "What voiceless howls blahblahblah",
-        answer: function(a) {
-            return a === "Wind";
-        }
-    }
-};
-
-function getRiddles() {
-    var result = Object.keys(riddles).map(function(id) {
-        return riddles[id];
-    });
-
-    return JSON.stringify(result);
+    for(var i = 0; i < riddles.length; i++)
+        insertRiddle(riddles[i]);
 }
 
 function attemptAnswer() {
@@ -60,7 +34,27 @@ function attemptAnswer() {
 
     var result = {
         id: riddleId,
-        status: riddles[riddleId].answer(answer)
+        status: riddles[riddleId].answer === answer
     };
     return JSON.stringify(result);
+}
+
+function submitRiddle() {
+    insertRiddle(args.Get("riddle"));
+}
+
+function insertRiddle(riddle) {
+    db.Declare("question", riddle.question, 1);
+    db.Declare("answer", riddle.answer, 1);
+
+    db.Execute("INSERT INTO Riddle VALUES(@question, @answer)")
+}
+
+function getRiddles() {
+    // var result = Object.keys(riddles).map(function(id) {
+    //     return riddles[id];
+    // });
+    var result = db.Execute("SELECT * FROM Riddle");
+
+    return result;
 }
