@@ -11,13 +11,13 @@ facultywarsFactory) {
         
         $scope.chosenRiddle.question = riddle.question;
     });
-    
+        
     $scope.processUserAnswer = function (userAnswer){
         $scope.portalHelpers.invokeServerFunction('attemptAnswer', {
             "riddleId": $scope.chosenRiddle.id, 
             "answer": userAnswer
         }).then(function(result) {
-            if(!result.status) console.log("ERROR");
+            if(!result.status) $scope.reply = "Wrong Answer!";
         });
     };
     
