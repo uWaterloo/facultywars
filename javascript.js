@@ -89,20 +89,4 @@ facultywarsFactory) {
             item: item
         };
 
-    }])
-    // Custom directive example
-    .directive('facultywarsDirectiveName', ['$http', function ($http) {
-        return {
-            link: function (scope, el, attrs) {
-
-            }
-        };
-    }])
-    // Custom filter example
-    .filter('facultywarsFilterName', function () {
-        return function (input, arg1, arg2) {
-            // Filter your output here by iterating over input elements
-            var output = input;
-            return output;
-        }
-    });
+    }]);
