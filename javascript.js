@@ -28,6 +28,14 @@ angular.module('PortalApp')
                 }   
             });
         }
+    
+    	$scope.portalHelpers.invokeServerFunction('getUserScore').then(function(result) {
+            	$scope.yourHighScore = result.count;
+            });
+    
+    	$scope.portalHelpers.invokeServerFunction('getFacultyHighscores').then(function(result) {
+            alert(JSON.stringify(result));
+        });
 
         $scope.processUserAnswer = function(userAnswer) {
             $scope.portalHelpers.invokeServerFunction('attemptAnswer', {
