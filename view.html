@@ -9,106 +9,15 @@
 </script>
 
 <script type="text/ng-template" id="main.html">
-
-    <!-- HIGH-SCORES -->
-    <div class="collapseMe">
-        <widget-row>
-            <widget-cell>
-                <h2> <widget-icon name="star"></widget-icon> High-Scores </h2>
-            </widget-cell>
-        </widget-row>
-        <widget-cell fill clickable>
-            <widget-cell fill>
-                Leader-Board
-            </widget-cell>
-            <widget-cell>
-                <widget-icon name="angle-right"></widget-icon>
-            </widget-cell>
-        </widget-cell>
-        <widget-cell fill clickable>
-            <widget-cell fill>
-                My Highscores
-            </widget-cell>
-            <widget-cell>
-                <widget-icon name="angle-right"></widget-icon>
-            </widget-cell>
-        </widget-cell>
-        </widget-row>
-    </div>
-
-    <!-- FACULTY RANKINGS -->
-    <div class="collapseMe">
-        <widget-row>
-            <widget-cell>
-                <h2> <widget-icon name="star"></widget-icon> Faculty Rankings </h2>
-            </widget-cell>
-        </widget-row>
-        <div ng-if="dbData.value.status">
-            <widget-row>
-                <widget-cell>
-                    <div class="pDetails" ng-if="dbData.value.status=='noTable'">
-                        Table does not exist,
-                        <a ng-click="createTable()">create table</a>.
-                    </div>
-                </widget-cell>
-            </widget-row>
-        </div>
-        <div ng-if="!dbData.value.status">
-            <widget-row>
-                <widget-cell>
-                    <form class="form-inline" ng-submit="insertData()">
-                        <div class="input-group" style="width: 100%;">
-                            <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter some text and submit"
-                            />
-                            <span class="input-group-btn" style="overflow:hidden;">
-                                <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"></button>
-                            </span>
-                        </div>
-                    </form>
-                </widget-cell>
-            </widget-row>
-
-            <widget-row ng-repeat="item in dbData.value">
-                <widget-cell>
-                    <div class="pDetails">Id: {{item.id}}</div>
-                    <div class="pDetails">UserId: {{item.userId}}</div>
-                    <div class="pDetails">Value: {{item.value}}</div>
-                </widget-cell>
-            </widget-row>
-        </div>
-    </div>
-
-    <div class="collapseMe">
-        <widget-row>
-            <widget-cell>
-                <h2> <widget-icon name="star"></widget-icon> My Highscores </h2>
-            </widget-cell>
-        </widget-row>
-    </div>
-
     <!-- GAME -->
     <div class="collapseMe">
         <widget-row>
             <widget-cell>
-                <widget-icon id=""> </widget-icon>
-                <h2>Play Now</h2>
-            </widget-cell>
-        </widget-row>
-        <widget-row>
-            <widget-cell>
+                <div id="riddle" ng-bind="getRiddle()">
+                </div>
                 <form class="form-inline" ng-submit="insertData()">
                     <div class="input-group" style="width: 100%;">
-                        <input type="text" class="form-control" ng-model="insertValue.value" placeholder="enter winner id"
-                        />
-                        <span class="input-group-btn" style="overflow:hidden;">
-                                <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"></button>
-                            </span>
-                    </div>
-                </form>
-                <form class="form-inline" ng-submit="insertData()">
-                    <div class="input-group" style="width: 100%;">
-                        <input type="text" class="form-control" ng-model="insertValue.value" placeholder="enter winner score"
-                        />
+                        <input type="text" class="form-control" ng-model="riddle" placeholder="user input" />
                         <span class="input-group-btn" style="overflow:hidden;">
                                 <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"></button>
                             </span>
@@ -117,7 +26,7 @@
             </widget-cell>
         </widget-row>
     </div>
-
+    
     <!-- Menu template -->
     <script type="text/ng-template" id="widgetMenu.html">
         <li>
@@ -126,3 +35,4 @@
         </a>
         </li>
     </script>
+</script>
