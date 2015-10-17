@@ -17,7 +17,7 @@ facultywarsFactory) {
             "riddleId": $scope.chosenRiddle.id, 
             "answer": userAnswer
         }).then(function(result) {
-            if(!result.status) $scope.reply = "Wrong Answer!";
+            if(!result.status) console.log("ERROR");
         });
     };
     
