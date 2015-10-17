@@ -47,6 +47,8 @@ function submitRiddle() {
     var question = args.Get("question");
     var answer = args.Get("answer");
     insertRiddle(question, answer);
+    
+    return "";
 }
 
 function insertRiddle(question, answer) {
