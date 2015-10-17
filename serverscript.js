@@ -44,8 +44,8 @@ function submitRiddle() {
 }
 
 function insertRiddle(riddle) {
-    db.Declare("question", riddle.question, 1);
-    db.Declare("answer", riddle.answer, 1);
+    db.Declare("question", riddle.question, true);
+    db.Declare("answer", riddle.answer, true);
 
     db.Execute("INSERT INTO Riddle VALUES(@question, @answer)")
 }
