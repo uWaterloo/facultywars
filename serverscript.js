@@ -94,3 +94,12 @@ function getRiddles() {
     });
     return JSON.stringify(result);
 }
+
+function getUserScore() {
+    var result = JSON.parse(db.Execute("SELECT COUNT(1) FROM Score WHERE userId = @uwId"));
+    return JSON.stringify({ count: result[0] });
+}
+
+function getHighestScoringUsers() {
+    
+}
