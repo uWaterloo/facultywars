@@ -9,30 +9,57 @@
 </script>
 
 <script type="text/ng-template" id="main.html">
-    <widget-row>
-        <widget-cell>
-            <h2> Answer Riddle </h2>
-        </widget-cell>
-    </widget-row>
-    <widget-row>
-        <widget-cell>
-            <div class="pDetails">{{chosenRiddle.question}}</div>
-        </widget-cell>
-    </widget-row>
-    <widget-row>
-        <widget-cell>
-            <input type="text" class="form-control" placeholder="Answer!" ng-model="userAnswer" />
-            <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"
-            ng-click="processUserAnswer(userAnswer)"></button>
-        <div class="pDetails">{{reply}}</div>
-        </widget-cell>
-    </widget-row>
+	<!-- Scoreboard -->
+    <div data-role="collapsible">
+        <widget-row>
+            <widget-cell>
+                <h2> <widget-icon name="trophy"> </widget-icon> Scoreboard </h2>
+                <p> stuff that will b </p>
+            </widget-cell>
+        </widget-row>
+    </div>
+    
+    <!-- Play The Game -->
+    <div data-role="collapsible">
+        <widget-row>
+            <widget-cell>
+                <h2> <widget-icon name="star"> </widget-icon> Answer Riddle </h2>
+                <div class="pDetails">{{chosenRiddle.question}}</div>
+                <form class="form-inline">
+                    <input type="text" class="form-control" placeholder="Answer!" ng-model="userAnswer" />
+                    <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" ng-click="processUserAnswer(userAnswer)"></button>
+                    <div class="pDetails">{{reply}}</div>
+                </form>
+            </widget-cell>
+        </widget-row>
+    </div>
 
-    <h2> Submit Riddle </h2>
-    <div class="input-group" style="width: 100%;">
-        <input type="text" class="form-control" placeholder="Enter a riddle" ng-model="userRiddleQuestion" />
-        <input type="text" class="form-control" placeholder="Enter its answer" ng-model="userRiddleAnswer" />
-        <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"
-        ng-click="retrieveUserRiddle(userRiddle)"></button>
+    <!-- Submit Riddles -->
+    <accordion close-others="oneAtATime">
+    <accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+    <div>
+        <widget-row>
+        	<h2> <widget-icon name="lightbulb"> </widget-icon> Submit Riddle </h2>
+        </widget-row>
+        <widget-row>
+                <div class="input-group" style="width: 100%;">
+                    <input type="text" class="form-control" placeholder="Enter a riddle" ng-model="userRiddleQuestion" />
+                    <input type="text" class="form-control" placeholder="Enter its answer" ng-model="userRiddleAnswer" />
+                    <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"
+                    ng-click="retrieveUserRiddle(userRiddleQuestion, userRiddleAnswer)"></button>
+                </div>
+        </widget-row>
+    </div>
+    </accordion-group>
+        </accordion>
+    
+    <!-- About -->
+    <div data-role="collapsible">
+        <widget-row>
+            <widget-cell>
+                <h2> <widget-icon name="info"> </widget-icon> Help </h2>
+                <p> It's simple, really.</p>
+            </widget-cell>
+        </widget-row>
     </div>
 </script>
