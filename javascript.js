@@ -4,31 +4,14 @@ angular.module('PortalApp')
         $http, $q,
         facultywarsFactory) {
 
-        $scope.callSeed = function() {
+    	$scope.callSeed = function() {
             $scope.portalHelpers.invokeServerFunction('seed');
         };
-
-        $scope.oneAtATime = true;
-
-        $scope.groups = [{
-            title: 'Dynamic Group Header - 1',
-            content: 'Dynamic Group Body - 1'
-        }, {
-            title: 'Dynamic Group Header - 2',
-            content: 'Dynamic Group Body - 2'
-        }];
-
-        $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-        $scope.addItem = function() {
-            var newItemNo = $scope.items.length + 1;
-            $scope.items.push('Item ' + newItemNo);
-        };
-
-        $scope.status = {
-            isFirstOpen: true,
-            isFirstDisabled: false
-        };
+    
+    	$scope.isCollapsed1 = false;
+    	$scope.isCollapsed2 = true;
+    	$scope.isCollapsed3 = true;
+    	$scope.isCollapsed4 = true;
 
         $scope.chosenRiddle = {};
 
@@ -37,8 +20,8 @@ angular.module('PortalApp')
                 "riddleId": $scope.chosenRiddle.id,
                 "answer": userAnswer
             }).then(function(result) {
-                if (!result.status) $scope.reply = "Wrong Answer :(";
-                else $scope.reply = "Right Answer!";
+                if (!result.status) $scope.reply1 = "Wrong Answer :(";
+                else $scope.reply1 = "Right Answer!";
             });
         };
 
@@ -47,7 +30,7 @@ angular.module('PortalApp')
                 "question": userRiddleQuestion,
                 "answer": userRiddleAnswer
             }).then(function(result) {
-
+				$scope.reply2 = "Thank you for your submission!";
             });
         };
 
@@ -67,14 +50,16 @@ angular.module('PortalApp')
         $rootScope, $filter, $q) {
         var init = function($scope) {
             // Place your init code here:
-            $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(
-                result) {
-                var riddles = result;
-                var riddle = riddles[parseInt(Math.random() *
-                    riddles.length)];
+            $scope.portalHelpers.invokeServerFunction('seed').then(function(result) {
+                $scope.portalHelpers.invokeServerFunction('getRiddles').then(
+                    function(result) {
+                        var riddles = result;
+                        var riddle = riddles[parseInt(Math.random() *
+                            riddles.length)];
 
-                $scope.chosenRiddle.question = riddle.question;
-                $scope.chosenRiddle.id = riddle.id;
+                        $scope.chosenRiddle.question = riddle.question;
+                        $scope.chosenRiddle.id = riddle.id;
+                    });
             });
         }
 
