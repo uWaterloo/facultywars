@@ -3,9 +3,14 @@ angular.module('PortalApp')
 .controller('facultywarsCtrl', ['$scope', '$http', '$q', 'facultywarsFactory', function ($scope, $http, $q,
 facultywarsFactory) {
     
+    $scope.current = {};
+    
     $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(result) {
-        $scope.riddles=JSON.stringify(result);
-        $scope.riddle= riddles[Math.random()*riddles.length];
+        var riddles = JSON.stringify(result);
+        var riddle = riddles[Math.random()*riddles.length];
+        
+        $scope.current.riddle = riddle.question;
+        // $scope.riddle= riddles[Math.random()*riddles.length];
     });
     
     // Widget Configuration
