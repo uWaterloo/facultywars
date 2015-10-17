@@ -17,8 +17,59 @@
             </widget-cell>
         </widget-row>
         <widget-row>
-            <widget-cell collapse = "isCollapsed1">
-                <p> to be implemented </p>
+            <widget-cell collapse="isCollapsed1">
+                <widget-row>
+                    <widget-cell>
+                        <div class=""> <h4> Faculty: </h4> </div>
+                    </widget-cell>
+                    <widget-cell>
+                        <div class=""> <h4> Score: </h4> </div>
+                    </widget-cell>
+                </widget-row>
+                <widget-row>
+                    <widget-cell> {{firstPlace}} </widget-cell>
+                    <widget-cell> {{score1}} </widget-cell>
+                </widget-row>
+                <widget-row>
+                    <widget-cell> {{secondPlace}} </widget-cell>
+                    <widget-cell> {{score2}} </widget-cell>
+                </widget-row>
+                <widget-row>
+                    <widget-cell> {{thirdPlace}} </widget-cell>
+                    <widget-cell> {{score3}} </widget-cell>
+                </widget-row>
+                <widget-row>
+                    <widget-cell> {{fourthPlace}} </widget-cell>
+                    <widget-cell> {{score4}} </widget-cell>
+                </widget-row>
+                <widget-row>
+                    <widget-cell> {{fifthPlace}} </widget-cell>
+                    <widget-cell> {{score5}} </widget-cell>
+                </widget-row>
+                <widget-row>
+                    <widget-cell> {{sixthPlace}} </widget-cell>
+                    <widget-cell> {{score6}} </widget-cell>
+                </widget-row>
+                <hr/>
+                <widget-row>
+                    <widget-cell> <h4> Your Score: </h4> </widget-cell>
+                </widget-row>
+                <hr/>
+                <widget-row>
+                    <widget-cell> <h4> Highscores: </h4> </widget-cell>
+                </widget-row>
+                <widget-row>
+                    <widget-cell> {{topUser1}} </widget-cell>
+                    <widget-cell> {{topScore1}} </widget-cell>
+                </widget-row>
+                <widget-row>
+                    <widget-cell> {{topUser2}} </widget-cell>
+                    <widget-cell> {{topScore2}} </widget-cell>
+                </widget-row>
+                <widget-row>
+                    <widget-cell> {{topUser3}} </widget-cell>
+                    <widget-cell> {{topScore3}} </widget-cell>
+                </widget-row>
             </widget-cell>
         </widget-row>
     </div>
@@ -46,19 +97,19 @@
     <div>
         <widget-row>
             <widget-cell fill clickable ng-click="isCollapsed3 = !isCollapsed3">
-            <h2> <widget-icon name="lightbulb"> </widget-icon> Submit Riddle </h2>
-                </widget-cell>
+                <h2> <widget-icon name="lightbulb"> </widget-icon> Submit Riddle </h2>
+            </widget-cell>
         </widget-row>
         <widget-row collapse="isCollapsed3">
             <div class="input-group" style="width: 100%;">
                 <input type="text" class="form-control" placeholder="Enter a riddle" ng-model="userRiddleQuestion" />
                 <input type="text" class="form-control" placeholder="Enter its answer" ng-model="userRiddleAnswer" />
                 <widget-cell>
-                <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"
-                ng-click="retrieveUserRiddle(userRiddleQuestion, userRiddleAnswer)"></button>
-                    </widget-cell>
+                    <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"
+                    ng-click="retrieveUserRiddle(userRiddleQuestion, userRiddleAnswer)"></button>
+                </widget-cell>
             </div>
-        	<div class="pDetails" >{{reply2}}</div>
+            <div class="pDetails">{{reply2}}</div>
         </widget-row>
     </div>
 
@@ -68,7 +119,7 @@
             <widget-cell fill clickable ng-click="isCollapsed4 = !isCollapsed4">
                 <h2> <widget-icon name="info"> </widget-icon> Help </h2>
             </widget-cell>
-            </widget-row>
+        </widget-row>
         <widget-row>
             <div collapse="isCollapsed4" class="pDetails"> It's simple, really.</div>
         </widget-row>
