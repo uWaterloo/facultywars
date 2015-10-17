@@ -26,7 +26,7 @@ function createSchema() {
     response += db.Execute(
         'CREATE TABLE Score' +
         '(id INT NOT NULL IDENTITY (1,1), ' +
-        ' userId INT NOT NULL, ' +
+        ' userId nvarchar(20) NOT NULL, ' +
         ' riddleId INT NOT NULL, ' +
         ' success INT NOT NULL DEFAULT(0), ' +
         ' fail INT NOT NULL DEFAULT(0), ' +
@@ -57,9 +57,9 @@ function attemptAnswer() {
 
     var field = success ? "success" : "fail";
 
-    db.Execute("INSERT INTO Score VALUES(@uwId, @riddleId, 0, 0)");
+    db.Execute("INSERT INTO Score VALUES(@currentUser, @riddleId, 0, 0)");
     db.Execute("UPDATE Score SET " + field + " = " + field +
-        " + 1 WHERE userId = @uwId AND riddleId = @riddleId");
+        " + 1 WHERE userId = @currentUser AND riddleId = @riddleId");
 
     var result = {
         status: riddle.answer === answer
@@ -83,7 +83,7 @@ function insertRiddle(question, answer) {
 }
 
 function getRiddles() {
-    var qResult = JSON.parse(db.Execute("SELECT * FROM Score WHERE userId = @uwId AND success > 0"))
+    var qResult = JSON.parse(db.Execute("SELECT * FROM Score WHERE userId = @currentUser AND success > 0"))
         .map(function(s) {
             return s.riddleId;
         });
@@ -96,10 +96,17 @@ function getRiddles() {
 }
 
 function getUserScore() {
-    var result = JSON.parse(db.Execute("SELECT COUNT(1) FROM Score WHERE userId = @uwId AND success > 0"));
-    return JSON.stringify({ count: result[0] });
+    var result = db.Execute("SELECT COUNT(1) FROM Score WHERE userId = @currentUser AND success > 0");
+    return result;
 }
 
-function getHighestScoringUsers() {
+function getUserHighScores() {
+    var scores = JSON.parse(db.Execute("SELECT userId, COUNT(1) FROM Score WHERE success > 0 GROUP BY userId"));
+    
+    var userIds = scores.map(function(u) { return u.userId });
+    var urls = userIds.map(function(ui) { 
+        return "https://api.uwaterloo.ca/v2/directory/" + ui + ".json?key=f757a32b726cc1e02753ed2e7ab89ec4"
+    });
+    
     
 }
