@@ -3,10 +3,11 @@ angular.module('PortalApp')
 .controller('facultywarsCtrl', ['$scope', '$http', '$q', 'facultywarsFactory', function ($scope, $http, $q,
 facultywarsFactory) {
     
-    $scope.riddles= $scope.portalHelpers.invokeServerFunction(
+    $scope.riddles= $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(result) {
+        alert(JSON.stringify(result));
+    });
     
     $scope.riddle= riddles[Math.random()*riddles.size()];
-
     // Widget Configuration
     $scope.portalHelpers.config = {
         // make 'widgetMenu.html' the template for the top right menu
