@@ -4,10 +4,10 @@ angular.module('PortalApp')
         $http, $q,
         facultywarsFactory) {
 
-    	$scope.callSeed = function() {
+        $scope.callSeed = function() {
             $scope.portalHelpers.invokeServerFunction('seed');
         };
-    
+
         $scope.oneAtATime = true;
 
         $scope.groups = [{
@@ -67,16 +67,14 @@ angular.module('PortalApp')
         $rootScope, $filter, $q) {
         var init = function($scope) {
             // Place your init code here:
-            $scope.portalHelpers.invokeServerFunction('seed').then(function(result) {
-                $scope.portalHelpers.invokeServerFunction('getRiddles').then(
-                    function(result) {
-                        var riddles = result;
-                        var riddle = riddles[parseInt(Math.random() *
-                            riddles.length)];
+            $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(
+                result) {
+                var riddles = result;
+                var riddle = riddles[parseInt(Math.random() *
+                    riddles.length)];
 
-                        $scope.chosenRiddle.question = riddle.question;
-                        $scope.chosenRiddle.id = riddle.id;
-                    });
+                $scope.chosenRiddle.question = riddle.question;
+                $scope.chosenRiddle.id = riddle.id;
             });
         }
 
