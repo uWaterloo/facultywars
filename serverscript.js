@@ -110,7 +110,7 @@ function getUserHighScores() {
             return "https://api.uwaterloo.ca/v2/directory/" + ui + ".json?key=" + apiKey;
         }).map(function(url) { 
             return JSON.parse(proxy.GetProxy(url)); 
-        }).;
+        });
     
     return JSON.stringify(data);
 }
