@@ -28,6 +28,18 @@ angular.module('PortalApp')
                 }   
             });
         }
+    
+    	$scope.portalHelpers.invokeServerFunction('getRiddles').then(function(
+                result) {
+                var riddles = result;
+                if(riddles.length>0){
+                    var riddle = riddles[parseInt(Math.random() * riddles.length)];
+                	$scope.chosenRiddle.question = riddle.question;
+                	$scope.chosenRiddle.id = riddle.id;
+                } else {
+                    $scope.chosenRiddle = {};
+                }   
+            });
 
         $scope.processUserAnswer = function(userAnswer) {
             $scope.portalHelpers.invokeServerFunction('attemptAnswer', {
