@@ -33,9 +33,9 @@ angular.module('PortalApp')
             	$scope.yourHighScore = result.count;
             });
     
-    	$scope.portalHelpers.invokeServerFunction('getFacultyHighscores').then)(function(result) {
+    	//$scope.portalHelpers.invokeServerFunction('getFacultyHighscores').then)(function(result) {
             
-        });
+        //});
 
         $scope.processUserAnswer = function(userAnswer) {
             $scope.portalHelpers.invokeServerFunction('attemptAnswer', {
