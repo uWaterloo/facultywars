@@ -29,7 +29,7 @@ angular.module('PortalApp')
             });
         }
     
-    	$scope.portalHelpers.invokeServerFunction('getRiddles').then(function(
+    	$scope.portalHelpers.invokeServerFunction('getUserScore').then(function(
                 result) {
                 var riddles = result;
                 if(riddles.length>0){
