@@ -14,13 +14,21 @@ facultywarsFactory) {
     });
         
     $scope.processUserAnswer = function (userAnswer){
-        console.log($scope.chosenRiddle);
         $scope.portalHelpers.invokeServerFunction('attemptAnswer', {
             "riddleId": $scope.chosenRiddle.id, 
             "answer": userAnswer
         }).then(function(result) {
-            if(!result.status) $scope.reply="Wrong Answer";
+            if(!result.status) $scope.reply="Wrong Answer :(";
             else $scope.reply="Right Answer!";
+        });
+    };
+    
+    $scope.retrieveUserRiddle = function (userRiddleQuestion, userRiddleAnswer){
+        $scope.portalHelpers.invokeServerFunction('submitRiddle', {
+            "question": userRiddleQuestion,
+            "answer": userRiddleAnswer
+        }).then(function(result) {
+            
         });
     };
     
