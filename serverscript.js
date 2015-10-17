@@ -60,7 +60,7 @@ function attemptAnswer() {
 
     var result = {
         id: riddleId,
-        //status: riddles[riddleId].answer(answer)
+        status: riddles[riddleId].answer(answer)
     };
     return JSON.stringify(result);
 }
