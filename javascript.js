@@ -13,7 +13,12 @@ facultywarsFactory) {
     });
     
     $scope.processUserAnswer = function (userAnswer){
-        console.log(userAnswer);
+        $scope.portalHelpers.invokeServerFunction('attemptAnswer', {
+            "riddleId": $scope.chosenRiddle.id, 
+            "answer": userAnswer
+        }).then(function(result) {
+            if(!result.status) console.log("ERROR");
+        });
     };
     
     // Widget Configuration
