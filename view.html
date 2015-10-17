@@ -16,23 +16,23 @@
             <widget-cell>
                 <h2> <widget-icon name="star"></widget-icon> High-Scores </h2>
             </widget-cell>
-        </widget-row> 
-            <widget-cell fill clickable>
-                <widget-cell fill>
-                    Leader-Board
-                </widget-cell>
-                <widget-cell>
-                    <widget-icon name="angle-right"></widget-icon>
-                </widget-cell>
+        </widget-row>
+        <widget-cell fill clickable>
+            <widget-cell fill>
+                Leader-Board
             </widget-cell>
-            <widget-cell fill clickable>
-                <widget-cell fill>
-                    My Highscores
-                </widget-cell>
-                <widget-cell>
-                    <widget-icon name="angle-right"></widget-icon>
-                </widget-cell>
+            <widget-cell>
+                <widget-icon name="angle-right"></widget-icon>
             </widget-cell>
+        </widget-cell>
+        <widget-cell fill clickable>
+            <widget-cell fill>
+                My Highscores
+            </widget-cell>
+            <widget-cell>
+                <widget-icon name="angle-right"></widget-icon>
+            </widget-cell>
+        </widget-cell>
         </widget-row>
     </div>
 
@@ -58,7 +58,8 @@
                 <widget-cell>
                     <form class="form-inline" ng-submit="insertData()">
                         <div class="input-group" style="width: 100%;">
-                            <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter some text and submit" />
+                            <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter some text and submit"
+                            />
                             <span class="input-group-btn" style="overflow:hidden;">
                                 <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"></button>
                             </span>
@@ -75,8 +76,8 @@
                 </widget-cell>
             </widget-row>
         </div>
-    </div> 
-    
+    </div>
+
     <div class="collapseMe">
         <widget-row>
             <widget-cell>
@@ -84,9 +85,9 @@
             </widget-cell>
         </widget-row>
     </div>
-    
-	<!-- GAME -->
-	<div class="collapseMe">
+
+    <!-- GAME -->
+    <div class="collapseMe">
         <widget-row>
             <widget-cell>
                 <widget-icon id=""> </widget-icon>
@@ -95,16 +96,33 @@
         </widget-row>
         <widget-row>
             <widget-cell>
-                 Will be an input 
+                <form class="form-inline" ng-submit="insertData()">
+                    <div class="input-group" style="width: 100%;">
+                        <input type="text" class="form-control" ng-model="insertValue.value" placeholder="enter winner id"
+                        />
+                        <span class="input-group-btn" style="overflow:hidden;">
+                                <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"></button>
+                            </span>
+                    </div>
+                </form>
+                <form class="form-inline" ng-submit="insertData()">
+                    <div class="input-group" style="width: 100%;">
+                        <input type="text" class="form-control" ng-model="insertValue.value" placeholder="enter winner score"
+                        />
+                        <span class="input-group-btn" style="overflow:hidden;">
+                                <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"></button>
+                            </span>
+                    </div>
+                </form>
             </widget-cell>
         </widget-row>
     </div>
 
-<!-- Menu template -->
-<script type="text/ng-template" id="widgetMenu.html">
-    <li>
-        <a ng-click="menuButtonClick()">
+    <!-- Menu template -->
+    <script type="text/ng-template" id="widgetMenu.html">
+        <li>
+            <a ng-click="menuButtonClick()">
             Logout
         </a>
-    </li>
-</script>
+        </li>
+    </script>
