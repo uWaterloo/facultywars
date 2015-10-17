@@ -22,29 +22,42 @@ function seed() {
     );
 }
 
-var riddles = [{
-    id: 1,
-    question: "What has roots but does not grow?",
-    answer: function (a) { return a === "Mountain"; }
-}, {
-    id: 2,
-    question: "A box with no lock etcetera",
-    answer: function (a) { return a === "Egg"; }
-}, {
-    id: 3,
-    question: "What voiceless howls blahblahblah",
-    answer: function (a) { return a === "Wind"; }
-}];
+var riddles = {
+    1: {
+        question: "What has roots but does not grow?",
+        answer: function(a) {
+            return a === "Mountain";
+        }
+    },
+    2: {
+        question: "A box with no lock etcetera",
+        answer: function(a) {
+            return a === "Egg";
+        }
+    },
+    3: {
+        question: "What voiceless howls blahblahblah",
+        answer: function(a) {
+            return a === "Wind";
+        }
+    }
+};
 
 function getRiddles() {
-    var result = riddles.map(function(r) { 
-        return { question: r.question }; 
+    var result = riddles.map(function(r) {
+        return {
+            question: r.question
+        };
     });
-    
+
     return JSON.stringify(result);
 }
 
 function attemptAnswer() {
     var riddleId = args.Get("riddleId");
-    
+    var answer = args.Get("answer");
+
+    return {
+        status: riddles[riddleId].answer(answer);
+    }
 }
