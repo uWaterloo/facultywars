@@ -25,13 +25,13 @@ function seed() {
 function getRiddles() {
     var result = [{
         id: 1,
-        riddle: "What has roots but does not grow?"
+        question: "What has roots but does not grow?"
     }, {
         id: 2,
-        riddle: "A box with no lock etcetera"
+        question: "A box with no lock etcetera"
     }, {
         id: 3,
-        riddle: "What voiceless howls blahblahblah"
+        question: "What voiceless howls blahblahblah"
     }];
     
     return JSON.stringify(result);
