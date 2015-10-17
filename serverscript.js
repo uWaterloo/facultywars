@@ -24,18 +24,21 @@ function seed() {
 
 var riddles = {
     1: {
+        id: 1,
         question: "What has roots but does not grow?",
         answer: function(a) {
             return a === "Mountain";
         }
     },
     2: {
+        id: 2,
         question: "A box with no lock etcetera",
         answer: function(a) {
             return a === "Egg";
         }
     },
     3: {
+        id: 3,
         question: "What voiceless howls blahblahblah",
         answer: function(a) {
             return a === "Wind";
@@ -44,10 +47,8 @@ var riddles = {
 };
 
 function getRiddles() {
-    var result = riddles.map(function(r) {
-        return {
-            question: r.question
-        };
+    var result = Object.keys(riddles).map(function(id) {
+        return riddles[id];
     });
 
     return JSON.stringify(result);
