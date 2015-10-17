@@ -20,10 +20,12 @@
             <widget-cell collapse="isCollapsed1">
                 <widget-row>
                     <widget-cell>
-                        <div class=""> <h4> Faculty: </h4> </div>
+                        <div class="">
+                            <h4> Faculty: </h4> </div>
                     </widget-cell>
                     <widget-cell>
-                        <div class=""> <h4> Score: </h4> </div>
+                        <div class="">
+                            <h4> Score: </h4> </div>
                     </widget-cell>
                 </widget-row>
                 <widget-row>
@@ -52,11 +54,13 @@
                 </widget-row>
                 <hr/>
                 <widget-row>
-                    <widget-cell> <h4> Your Score: </h4> </widget-cell>
+                    <widget-cell>
+                        <h4> Your Score: </h4> </widget-cell>
                 </widget-row>
                 <hr/>
                 <widget-row>
-                    <widget-cell> <h4> Highscores: </h4> </widget-cell>
+                    <widget-cell>
+                        <h4> Highscores: </h4> </widget-cell>
                 </widget-row>
                 <widget-row>
                     <widget-cell> {{topUser1}} </widget-cell>
@@ -84,11 +88,15 @@
         <widget-row>
             <widget-cell collapse="isCollapsed2">
                 <div class="pDetails">{{chosenRiddle.question}}</div>
-                <form class="form-inline">
-                    <input type="text" class="form-control" placeholder="Answer!" ng-model="userAnswer" />
-                    <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" ng-click="processUserAnswer(userAnswer)"></button>
-                    <div class="pDetails">{{reply1}}</div>
-                </form>
+                <widget-row>
+                    <widget-cell>
+                        <input type="text" class="form-control" placeholder="Answer!" ng-model="userAnswer" />
+                    </widget-cell>
+                    <widget-cell>
+                        <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" ng-click="processUserAnswer(userAnswer)"></button>
+                    </widget-cell>
+                </widget-row>
+                <div class="pDetails">{{reply1}}</div>
             </widget-cell>
         </widget-row>
     </div>
@@ -120,8 +128,12 @@
                 <h2> <widget-icon name="info"> </widget-icon> Help </h2>
             </widget-cell>
         </widget-row>
-        <widget-row>
-            <div collapse="isCollapsed4" class="pDetails"> It's simple, really.</div>
+        <widget-row collapse="isCollapsed4">
+            <div class="pDetails"> This is a fun widget. For every riddle you solve, your high-score goes up, and you help your
+                faculty get closer to the top of the leader-board. By doing portal-related activities,
+                like telling us how crowded SLC is, you get a high-score multiplier. In addition, you
+                can submit your own riddles.
+            </div>
         </widget-row>
     </div>
 
