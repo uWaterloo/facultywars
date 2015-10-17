@@ -58,7 +58,9 @@ function attemptAnswer() {
     var riddleId = args.Get("riddleId");
     var answer = args.Get("answer");
 
-    return {
-        status: riddles[riddleId].answer(answer);
-    }
+    var result = {
+        id: riddleId,
+        //status: riddles[riddleId].answer(answer)
+    };
+    return JSON.stringify(result);
 }
