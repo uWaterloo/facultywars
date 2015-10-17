@@ -40,16 +40,6 @@ angular.module('PortalApp')
     .factory('facultywarsFactory', ['$http', '$rootScope', '$filter', '$q', function($http,
         $rootScope,
         $filter, $q) {
-        $scope.portalHelpers.invokeServerFunction('seed').then(function(result) {
-            $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(
-                result) {
-                var riddles = result;
-                var riddle = riddles[parseInt(Math.random() * riddles.length)];
-
-                $scope.chosenRiddle.question = riddle.question;
-                $scope.chosenRiddle.id = riddle.id;
-            });
-        });
         var initialized = {
             value: false
         };
