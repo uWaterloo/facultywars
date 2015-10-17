@@ -96,7 +96,7 @@ function getRiddles() {
 }
 
 function getUserScore() {
-    var result = JSON.parse(db.Execute("SELECT COUNT(1) FROM Score WHERE userId = @uwId"));
+    var result = JSON.parse(db.Execute("SELECT COUNT(1) FROM Score WHERE userId = @uwId AND success > 0"));
     return JSON.stringify({ count: result[0] });
 }
 
