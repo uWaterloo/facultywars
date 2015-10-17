@@ -11,8 +11,9 @@
 <script type="text/ng-template" id="main.html">
     <div class="pDetails">{{chosenRiddle.question}}</div>
     <div class="input-group" style="width: 100%;">
-        <input id="userAnswer" type="text" class="form-control" placeholder="user input" ng-model="userAnswer"/>
-    	<button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;" 
-                ng-click="processUserAnswer(userAnswer)"></button> 
+            <input id="userAnswer" type="text" class="form-control" placeholder="user input" ng-model="userAnswer"/>
+    		<button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;" 
+            	    ng-click="processUserAnswer(userAnswer)"></button> 
+        	<div class="pDetails">{{reply}}</div>
     </div>
 </script>
