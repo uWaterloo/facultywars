@@ -4,6 +4,10 @@ angular.module('PortalApp')
         $http, $q,
         facultywarsFactory) {
 
+    	$scope.callSeed = function() {
+            $scope.portalHelpers.invokeServerFunction('seed');
+        };
+    
         $scope.oneAtATime = true;
 
         $scope.groups = [{
