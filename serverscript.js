@@ -101,12 +101,16 @@ function getUserScore() {
 }
 
 function getUserHighScores() {
+    var apiKey = "";
     var scores = JSON.parse(db.Execute("SELECT userId, COUNT(1) FROM Score WHERE success > 0 GROUP BY userId"));
     
     var userIds = scores.map(function(u) { return u.userId });
-    var urls = userIds.map(function(ui) { 
-        return "https://api.uwaterloo.ca/v2/directory/" + ui + ".json?key=f757a32b726cc1e02753ed2e7ab89ec4"
-    });
+    var data = userIds
+    	.map(function(ui) { 
+            return "https://api.uwaterloo.ca/v2/directory/" + ui + ".json?key=" + apiKey;
+        }).map(function(url) { 
+            return JSON.parse(proxy.GetProxy(url)); 
+        }).;
     
-    
+    return JSON.stringify(data);
 }
