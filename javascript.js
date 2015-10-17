@@ -3,15 +3,16 @@ angular.module('PortalApp')
 .controller('facultywarsCtrl', ['$scope', '$http', '$q', 'facultywarsFactory', function ($scope, $http, $q,
 facultywarsFactory) {
     
-    $scope. = {};
+    $scope.chosenRiddle = {};
     
     $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(result) {
         var riddles = result;
         var riddle = riddles[parseInt(Math.random()*riddles.length)];
         
         $scope.chosenRiddle.question = riddle.question;
+        $scope.chosenRiddle.id = riddle.id;
     });
-    
+        
     $scope.processUserAnswer = function (userAnswer){
         console.log($scope.chosenRiddle);
         $scope.portalHelpers.invokeServerFunction('attemptAnswer', {
