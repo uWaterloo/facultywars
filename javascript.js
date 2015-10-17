@@ -14,28 +14,36 @@ angular.module('PortalApp')
         $scope.isCollapsed4 = true;
 
         $scope.chosenRiddle = {};
-    
-    	function riddleMaker() {
+
+        function riddleMaker() {
             $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(
                 result) {
                 var riddles = result;
-                if(riddles.length>0){
+                if (riddles.length > 0) {
                     var riddle = riddles[parseInt(Math.random() * riddles.length)];
-                	$scope.chosenRiddle.question = riddle.question;
-                	$scope.chosenRiddle.id = riddle.id;
+                    $scope.chosenRiddle.question = riddle.question;
+                    $scope.chosenRiddle.id = riddle.id;
                 } else {
                     $scope.chosenRiddle = {};
-                }   
+                }
             });
         }
-    
-    	$scope.portalHelpers.invokeServerFunction('getUserScore').then(function(result) {
-            	$scope.yourHighScore = result.count;
-            });
-    
-    	$scope.portalHelpers.invokeServerFunction('getUserHighScores').then(function(result) {
-            alert(JSON.stringify(result));
+
+        $scope.portalHelpers.invokeServerFunction('getUserScore').then(function(result) {
+            $scope.yourHighScore = result.count;
         });
+
+        function highScores() {
+            $scope.portalHelpers.invokeServerFunction('getUserHighScores').then(function(
+                result) {
+                $scope.firstPlace = result[0].userId;
+                $scope.score1 = result[0].count;
+                $scope.secondPlace = result[1].userId;
+                $scope.score2 = result[1].count;
+                $scope.thirdPlace = result[2].userId;
+                $scope.score3 = result[2].count;
+            });
+        }
 
         $scope.processUserAnswer = function(userAnswer) {
             $scope.portalHelpers.invokeServerFunction('attemptAnswer', {
