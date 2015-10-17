@@ -102,15 +102,17 @@ function getUserScore() {
 
 function getUserHighScores() {
     var apiKey = "dd1b277b2261f93efd9ae9cc28627238";
-    var scores = JSON.parse(db.Execute("SELECT userId, COUNT(1) FROM Score WHERE success > 0 GROUP BY userId"));
+    var scores = JSON.parse(db.Execute("SELECT userId, COUNT(1) as count FROM Score WHERE success > 0 GROUP BY userId"));
     
-    var userIds = scores.map(function(u) { return u.userId });
-    var data = userIds
-    	.map(function(ui) { 
-            return "https://api.uwaterloo.ca/v2/directory/" + ui + ".json?key=" + apiKey;
-        }).map(function(url) { 
-            return JSON.parse(proxy.GetProxy(url)); 
-        });
+    scores = scores.sort(function(s1, s2) { return s1.count - s2.count; });
+    // var data = scores
+    // 	.map(function(score) { 
+    //         return 
+    //         return "https://api.uwaterloo.ca/v2/directory/" + ui + ".json?key=" + apiKey;
+    //     }).map(function(url) { 
+    //         var externalData = JSON.parse(proxy.GetProxy(url)); 
+    //         
+    //     });
     
-    return JSON.stringify(data);
+    return JSON.stringify(scores);
 }

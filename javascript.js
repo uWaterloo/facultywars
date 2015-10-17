@@ -33,7 +33,7 @@ angular.module('PortalApp')
             	$scope.yourHighScore = result.count;
             });
     
-    	$scope.portalHelpers.invokeServerFunction('getFacultyHighscores').then(function(result) {
+    	$scope.portalHelpers.invokeServerFunction('getUserHighScores').then(function(result) {
             alert(JSON.stringify(result));
         });
 
