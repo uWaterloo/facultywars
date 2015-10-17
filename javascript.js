@@ -10,6 +10,7 @@ facultywarsFactory) {
         var riddle = riddles[parseInt(Math.random()*riddles.length)];
         
         $scope.chosenRiddle.question = riddle.question;
+        $scope.chosenRiddle.id = riddle.id;
     });
         
     $scope.processUserAnswer = function (userAnswer){
