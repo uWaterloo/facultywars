@@ -9,11 +9,19 @@
 </script>
 
 <script type="text/ng-template" id="main.html">
+    <h2> Answer Riddle </h2>
     <div class="pDetails">{{chosenRiddle.question}}</div>
     <div class="input-group" style="width: 100%;">
-            <input id="userAnswer" type="text" class="form-control" placeholder="user input" ng-model="userAnswer"/>
+            <input type="text" class="form-control" placeholder="Answer!" ng-model="userAnswer"/>
     		<button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;" 
             	    ng-click="processUserAnswer(userAnswer)"></button> 
-        	<div class="pDetails">{{reply}}</div>
+    </div>
+    <div class="pDetails">{{reply}}</div>
+    <h2> Submit Riddle </h2>
+    <div class="input-group" style="width: 100%;">
+            <input type="text" class="form-control" placeholder="Enter a riddle" ng-model="userRiddleQuestion"/>
+        	<input type="text" class="form-control" placeholder="Enter its answer" ng-model="userRiddleAnswer"/>
+    		<button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;" 
+            	    ng-click="retrieveUserRiddle(userRiddle)"></button> 
     </div>
 </script>
