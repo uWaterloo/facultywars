@@ -104,7 +104,7 @@ function getUserHighScores() {
     var apiKey = "dd1b277b2261f93efd9ae9cc28627238";
     var scores = JSON.parse(db.Execute("SELECT userId, COUNT(1) as count FROM Score WHERE success > 0 GROUP BY userId"));
     
-    scores = scores.sort(function(s1, s2) { return s1.count - s2.count; });
+    scores = scores.sort(function(s1, s2) { return s2.count - s1.count; };
     // var data = scores
     // 	.map(function(score) { 
     //         return 
