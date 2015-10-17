@@ -87,16 +87,21 @@
         </widget-row>
         <widget-row>
             <widget-cell collapse="isCollapsed2">
-                <div class="pDetails">{{chosenRiddle.question}}</div>
-                <widget-row>
-                    <widget-cell>
-                        <input type="text" class="form-control" placeholder="Answer!" ng-model="userAnswer" />
-                    </widget-cell>
-                    <widget-cell>
-                        <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" ng-click="processUserAnswer(userAnswer)"></button>
-                    </widget-cell>
-                </widget-row>
-                <div class="pDetails">{{reply1}}</div>
+                <div ng-if="chosenRiddle.question">
+                    <div class="pDetails">{{chosenRiddle.question}}</div>
+                    <widget-row>
+                        <widget-cell>
+                            <input type="text" class="form-control" placeholder="Answer!" ng-model="userAnswer" />
+                        </widget-cell>
+                        <widget-cell>
+                            <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" ng-click="processUserAnswer(userAnswer)"></button>
+                        </widget-cell>
+                    </widget-row>
+                    <div class="pDetails">{{reply1}}</div>
+                </div>
+                <div ng-if="!chosenRiddle.question" class="pDetails">
+                    Sorry, no more riddles for you! Try again later, or submit some more riddles!
+                </div>
             </widget-cell>
         </widget-row>
     </div>
