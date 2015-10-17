@@ -44,6 +44,8 @@ angular.module('PortalApp')
                 $scope.score3 = result[2].count;
             });
         }
+    
+    	highScores();
 
         $scope.processUserAnswer = function(userAnswer) {
             $scope.portalHelpers.invokeServerFunction('attemptAnswer', {
@@ -54,6 +56,7 @@ angular.module('PortalApp')
                 else {
                     $scope.reply1 = "Right Answer!";
                     riddleMaker();
+                    highScores();
                 };
             });
         };
