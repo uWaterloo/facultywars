@@ -33,20 +33,8 @@ angular.module('PortalApp')
             	$scope.yourHighScore = result.count;
             });
     
-    	$scope.portalHelpers.invokeServerFunction('getFacultyHighscores').then)(function(result) {
-            $scope.firstPlace = result
-            $scope.secondPlace = result
-            $scope.thirdPlace = result
-            $scope.fourthPlace = result
-            $scope.fifthPlace = result
-            $scope.sixthPlace = result
-            
-            $scope.score1 = result
-            $scope.score2 = result
-            $scope.score3 = result
-            $scope.score4 = result
-            $scope.score5 = result
-            $scope.score6 = result
+    	$scope.portalHelpers.invokeServerFunction('getFacultyHighscores').then(function(result) {
+            alert(JSON.stringify(result));
         });
 
         $scope.processUserAnswer = function(userAnswer) {
