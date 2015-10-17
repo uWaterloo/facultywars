@@ -17,35 +17,41 @@ function rollback() {
 
 function seed() {
     rollback();
-    var riddles = db.Execute(
+    db.Execute(
         'CREATE TABLE Riddle' +
         '(id INT  NOT NULL IDENTITY(1,1) PRIMARY KEY, ' +
         ' question TEXT NOT NULL, ' +
         ' answer   TEXT NOT NULL)'
     );
 
-    for (var i = 0; i < riddles.length; i++)
-        insertRiddle(riddles[i]);
+    for (var i = 0; i < riddles.length; i++) {
+        var riddle = riddles[i];
+        insertRiddle(riddle.question, riddle.answer);
+    }
+    
+    return "";
 }
 
 function attemptAnswer() {
-    var riddleId = args.Get("riddleId");
     var answer = args.Get("answer");
+    
+    var riddle = JSON.parse(db.Execute("SELECT * FROM Riddle WHERE id = @riddleId"))[0];
 
     var result = {
-        id: riddleId,
-        status: riddles[riddleId].answer === answer
+        status: riddle.answer === answer
     };
     return JSON.stringify(result);
 }
 
 function submitRiddle() {
-    insertRiddle(args.Get("riddle"));
+    var question = args.Get("question");
+    var answer = args.Get("answer");
+    insertRiddle(question, answer);
 }
 
-function insertRiddle(riddle) {
-    db.Declare("question", riddle.question, true);
-    db.Declare("answer", riddle.answer, true);
+function insertRiddle(question, answer) {
+    db.Declare("question", question, true);
+    db.Declare("answer", answer, true);
 
     db.Execute("INSERT INTO Riddle VALUES(@question, @answer)")
 }
