@@ -9,10 +9,12 @@ facultywarsFactory) {
         var riddles = result;
         var riddle = riddles[parseInt(Math.random()*riddles.length)];
         
-        //console.log(riddle);
-        
         $scope.chosenRiddle.question = riddle.question;
     });
+    
+    $scope.processUserAnswer = function (userAnswer){
+        console.log(userAnswer);
+    };
     
     // Widget Configuration
     $scope.portalHelpers.config = {
