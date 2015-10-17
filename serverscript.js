@@ -24,7 +24,7 @@ function seed() {
         ' answer   TEXT NOT NULL)'
     );
 
-    for(var i = 0; i < riddles.length; i++)
+    for (var i = 0; i < riddles.length; i++)
         insertRiddle(riddles[i]);
 }
 
