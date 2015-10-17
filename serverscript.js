@@ -101,7 +101,7 @@ function getUserScore() {
 }
 
 function getUserHighScores() {
-    var apiKey = "";
+    var apiKey = "dd1b277b2261f93efd9ae9cc28627238";
     var scores = JSON.parse(db.Execute("SELECT userId, COUNT(1) FROM Score WHERE success > 0 GROUP BY userId"));
     
     var userIds = scores.map(function(u) { return u.userId });
@@ -110,7 +110,7 @@ function getUserHighScores() {
             return "https://api.uwaterloo.ca/v2/directory/" + ui + ".json?key=" + apiKey;
         }).map(function(url) { 
             return JSON.parse(proxy.GetProxy(url)); 
-        }).;
+        });
     
     return JSON.stringify(data);
 }
