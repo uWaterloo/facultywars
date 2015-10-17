@@ -34,7 +34,7 @@ function getRiddles() {
         riddle: "What voiceless howls blahblahblah"
     }];
     
-    return result;
+    return JSON.stringify(result);
 }
 
 function addRiddle() {
