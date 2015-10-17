@@ -3,8 +3,11 @@ angular.module('PortalApp')
 .controller('facultywarsCtrl', ['$scope', '$http', '$q', 'facultywarsFactory', function ($scope, $http, $q,
 facultywarsFactory) {
     
-    $scope.riddle="What has roots but does not grow?";
-
+    $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(result) {
+        $scope.riddles=JSON.stringify(result);
+        $scope.riddle= riddles[Math.random()*riddles.length];
+    });
+    
     // Widget Configuration
     $scope.portalHelpers.config = {
         // make 'widgetMenu.html' the template for the top right menu
