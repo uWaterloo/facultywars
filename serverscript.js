@@ -9,33 +9,55 @@ var riddles = [{
     answer: "Wind"
 }];
 
-function rollback() {
-    db.Execute('DROP TABLE Result');
+function dropSchema() {
     db.Execute('DROP TABLE Riddle');
     db.Execute('DROP TABLE Score');
 }
 
-function seed() {
-    rollback();
-    db.Execute(
+function createSchema() {
+    var response = "";
+    response += db.Execute(
         'CREATE TABLE Riddle' +
         '(id INT  NOT NULL IDENTITY(1,1) PRIMARY KEY, ' +
         ' question TEXT NOT NULL, ' +
         ' answer   TEXT NOT NULL)'
     );
+    
+    response += db.Execute(
+    	'CREATE TABLE Score' +
+    	'(userId INT NOT NULL, ' +
+    	' riddleId INT NOT NULL, ' +
+        ' success INT NOT NULL DEFAULT(0), ' +
+        ' fail INT NOT NULL DEFAULT(0), ' +
+        ' PRIMARY KEY (userId, riddleId))'
+    );
+    
+    return response;
+}
+
+function seed() {
+    var response = "";
+    dropSchema();
+    response += createSchema();   
 
     for (var i = 0; i < riddles.length; i++) {
         var riddle = riddles[i];
         insertRiddle(riddle.question, riddle.answer);
     }
     
-    return "";
+    return response;
 }
 
 function attemptAnswer() {
     var answer = args.Get("answer");
     
     var riddle = JSON.parse(db.Execute("SELECT * FROM Riddle WHERE id = @riddleId"))[0];
+    var success = riddle.answer === answer;
+    
+    var field = success ? "success" : "fail";
+    
+    db.Execute("INSERT INTO Score VALUES(@riddleId, @uwId, 0, 0)");
+    db.Execute("UPDATE Score SET " + field + " = " + field + " + 1");
 
     var result = {
         status: riddle.answer === answer
@@ -59,10 +81,11 @@ function insertRiddle(question, answer) {
 }
 
 function getRiddles() {
-    // var result = Object.keys(riddles).map(function(id) {
-    //     return riddles[id];
-    // });
-    var result = db.Execute("SELECT * FROM Riddle");
-
-    return result;
+    var qResult = db.Execute("SELECT * FROM Score WHERE userId = @uwId AND success > 0");
+    //var exclude = qResult.map(function(s) {
+    //    return s.riddleId;
+    //});
+    //// var result = db.Execute("SELECT * FROM Riddle WHERE id NOT IN ('" + exclude.join("' ,'") + "')");
+    //var result = [];
+    return qResult;
 }
