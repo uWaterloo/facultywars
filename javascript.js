@@ -3,7 +3,7 @@ angular.module('PortalApp')
 .controller('facultywarsCtrl', ['$scope', '$http', '$q', 'facultywarsFactory', function ($scope, $http, $q,
 facultywarsFactory) {
     
-    $scope. = {};
+    $scope.chosenRiddle = {};
     
     $scope.portalHelpers.invokeServerFunction('getRiddles').then(function(result) {
         var riddles = result;
