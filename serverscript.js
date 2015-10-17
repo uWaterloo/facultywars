@@ -10,21 +10,41 @@ function getData() {
     return queryResult;
 }
 
-// Create talbe
-function createTable() {
-    var result = {};
-
-    var queryResult = db.Execute('SELECT TOP 1 * FROM sampleTable');
-    var row = JSON.parse(queryResult);
-
-    if (row.length > 0 && typeof row[0].Error != 'undefined') {
-        db.Execute('CREATE TABLE sampleTable(id INTEGER PRIMARY KEY IDENTITY(1,1), userId nvarchar(50), value nvarchar(50));');
-        result = '{"status":"tableCreated"}';
-    } else
-        result = '{"status":"tableExist"}';
-
-    return JSON.stringify(result);
+function rollback() {
+    db.Execute('DROP TABLE Result');
+    db.Execute('DROP TABLE Riddle');
+    db.Execute('DROP TABLE Scores');
 }
+function seed() {    
+    var riddles = db.Execute(
+        'CREATE TABLE Riddle' +
+        '(RiddleId INT  NOT NULL IDENTITY(1,1) PRIMARY KEY, ' +
+        ' Question TEXT NOT NULL, ' +
+        ' Answer   TEXT NOT NULL)'
+    );
+    
+    var score = db.Execute(
+        'CREATE TABLE Score' +
+        '(ScoreId  INT NOT NULL IDENTITY(1,1) PRIMARY KEY, ' +
+        ' UserId   INT NOT NULL, ' +
+        ' RiddleId INT NOT NULL, ' +
+        ' Fail     INT NOT NULL DEFAULT(0), ' + 
+        ' Success  INT NOT NULL DEFAULT(0))' 
+    );
+}
+
+function addRiddle() {
+    var question = args.Get("question");
+    var answer = args.Get("answer");
+    
+    var riddleId =
+}
+
+function postResult() {
+    var user = args.Get("user");
+    var points = args.Get("points");
+}
+
 
 // Insert into the database
 function insert() {
